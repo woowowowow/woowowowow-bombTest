@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/Bmob-2.2.4.min.js"></script>
+
+</head>
+
+<body>
+    <input type="text" name="username" id="username">
+    <input type="text" name="pwd" id="pwd">
+    <input type="button" value="注册" id="btn">
+    <script>
+        Bmob.initialize("1631b1b18d0a7851", "314159");
+        Bmob.debug(true);
+
+        var btn = document.getElementById("btn");
+        var username=document.getElementById("username");
+        var pwd=document.getElementById("pwd");
+
+        function register() {
+            let params = {
+                username: username.value,
+                password: pwd.value
+            };
+            Bmob.User.register(params).then(res => {
+                location.href="login.html";
+                console.log(res);
+            }).catch(err => {
+                alert(err.error);
+                console.log(err);
+            });
+        }
+
+        btn.onclick=function(){
+            register();
+        };
+        
+    </script>
+</body>
+
+</html>
